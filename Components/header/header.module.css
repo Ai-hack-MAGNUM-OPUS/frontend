@@ -1,0 +1,48 @@
+.header{
+    position: fixed;
+    top:0px;
+    left: 0px;
+    z-index: 100;
+    background-color: #F4F7FD;
+    padding: 10px 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap:100px;
+    width: 100%;
+}
+
+.logo{
+    cursor: pointer;
+}
+.itemWrapper{
+    display: flex;
+    gap:50px;
+}
+.item{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 24px;
+    gap: 10px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 28px;
+    cursor: pointer;
+
+    
+    color: #13377D;
+    background: #F4F7FD;
+    border: 1px solid #13377D;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.item:hover{
+    color: #FFFFFF;
+    background: #13377D;
+    transition: 0.3s;
+
+}

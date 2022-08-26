@@ -1,8 +1,10 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { MyDocViewer } from '../Components/DocViewer'
+import { ErrorViewer } from '../Components/ErrorViewer'
 import { FileUploader } from '../Components/FileUploader'
+import { Header } from '../Components/header'
 import styles from '../styles/Home.module.css'
+import 'antd/dist/antd.css';
 
 const Home: NextPage = () => {
   return (
@@ -13,7 +15,14 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <FileUploader onResponse={(res)=>console.log(res)}></FileUploader>
+        <Header></Header>
+        
+          <div className={}>
+            
+          </div>
+          <div>
+
+          </div>
       </main>
     </div>
   )
