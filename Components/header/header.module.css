@@ -10,6 +10,8 @@
     justify-content: space-between;
     gap:100px;
     width: 100%;
+    border: 1px solid #F4F7FD;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.12);
 }
 
 .logo{
@@ -44,5 +46,4 @@
     color: #FFFFFF;
     background: #13377D;
     transition: 0.3s;
-
 }

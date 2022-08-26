@@ -9,6 +9,7 @@ interface ErrorViewerIE{
     paragraph: string[];
     variants?: string[];
     num: number;
+    correct:boolean
 }
 
 export const ErrorViewer : React.FC<ErrorViewerIE> = (props) =>{
@@ -16,22 +17,33 @@ export const ErrorViewer : React.FC<ErrorViewerIE> = (props) =>{
     
 
     return(
-        <div>
-            <div>
-                <img src="/images/err.svg"></img>
-                <div>{props.num}</div>
-                <div className={styles.Text}>
-                    {props.errText}
+        <div className={styles.viewer}>
+            <div className={styles.card}>
+                <div className={styles.leftSide}>
+                    <img src={props.correct? "/images/correct.svg":"/images/err.svg"}></img>
+                    <div style={{color:"rgba(0, 0, 0, 0.45)"}}>№{props.num}</div>
+                    <div className={styles.Text}>
+                        {props.errText}
+                    </div>
                 </div>
-                <div onClick={()=>setOpen(!open)}>
-                    <img src="/images/arrow.svg"></img>
-                </div>
-            </div>
-            <div style={{display: open? "":"none"}}>
-                <div>
+                <div  className={styles.rightSide}>
+                    <div className={styles.correct}>{props.correct? "Нет замечаний":"Есть замечания"}</div>
+                    <div onClick={()=>setOpen(!open)} className={styles.arrow}>
+                    <span style={{color:"#1890FF"}}>Посмотреть</span>
+                    <img style={{transform: open? "rotate(180deg)":""}} src="/images/arrow.svg"></img>
+                    </div>
+                </div>        
+        </div>
+        
+        {   open?
+            <div className={styles.fixes}>
+                <div className={styles.paragraphs}>
                     {
                         props.paragraph.map(
-                            (value)=><div className={styles.paragraph}>{value}</div>
+                            (value, index)=><div className={styles.paragraph}>
+                                    <div>№{index+1}</div>
+                                    <div className={styles.paragraph}>{value}</div>
+                                </div>
                         )
                     }
                 </div>
@@ -43,6 +55,9 @@ export const ErrorViewer : React.FC<ErrorViewerIE> = (props) =>{
                     }
                 </div>
             </div>
+            :<div></div>
+        }
+            
         </div>
     );
 }
