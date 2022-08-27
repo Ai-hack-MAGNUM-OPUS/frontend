@@ -30,10 +30,12 @@ const Upload: NextPage = () => {
       <main className={styles.main}>
         <Header></Header>
         <div className={styles.upload}>
+            <div className={styles.h1}>Веб-сервис для помощи в проверки НПА</div>
             <FileUploader onResponse={(file)=>setFiles([...files, file])}></FileUploader>
             <div className={styles.btn} onClick={()=>onNext()}>Далее</div>
         </div>
-          
+        <img className={styles.frame} src="/images/frame.svg"></img>
+        <img className={styles.stars} src="/images/stars.svg"></img>
       </main>
     </div>
   )

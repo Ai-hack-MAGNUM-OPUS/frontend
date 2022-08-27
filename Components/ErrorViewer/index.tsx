@@ -41,7 +41,7 @@ export const ErrorViewer : React.FC<ErrorViewerIE> = (props) =>{
                             (value, index)=><div className={styles.paragraph}>
                                     <div className={styles.num}><strong>№{index+1}</strong> <div className={styles.circle} style={{opacity:"0.5",background: Number(value[1])<50? "#F5222D": Number(value[1]) < 70? "#E3F32A":"#52C41A", display:props.correct? "":"none"}}></div></div>
                                     <div className={styles.paragraph}>{value[0]}</div>
-                                    <div><strong>Score:{value[1]}</strong></div>
+                                    <div style={{display: props.correct? "":"none"}}><strong>Score:{value[1]}</strong></div>
                                 </div>
                         )
                     }

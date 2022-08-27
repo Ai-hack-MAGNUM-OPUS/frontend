@@ -20,7 +20,7 @@
 }
 .itemWrapper{
     display: flex;
-    gap:50px;
+    gap:25px;
 }
 .item{
     display: flex;
@@ -34,7 +34,7 @@
     font-size: 18px;
     line-height: 28px;
     cursor: pointer;
-
+    white-space: nowrap;
     
     color: #13377D;
     background: #F4F7FD;

@@ -12,7 +12,8 @@ import { host } from './api/consts'
 import { PulseLoader } from 'react-spinners'
 import axios from 'axios'
 import { Checkbox } from 'antd'
-
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 
 
 const Home: NextPage = () => {
@@ -27,7 +28,7 @@ const Home: NextPage = () => {
   const [data,setData]  = useState("")
   let i = 1;
   let cards = new Array<JSX.Element>()
-
+  let correctClasses = 0
   const getData = () =>{
     if (data == ""){
       axios.get(host+"/api/site/docx/" + file.uuid).then(res => {
@@ -46,14 +47,16 @@ const Home: NextPage = () => {
   setTimeout(getData, 2000);
   if (data != ""){
     for(var name in data as any) { 
-      if (correct == false && (data as any)[name][0]!=undefined){continue}
-      if (err == false && (data as any)[name][0]==undefined){continue}
+      if ((data as any)[name].correct){correctClasses++}
+      if (correct == false && (data as any)[name].correct == true){continue}
+      if (err == false && (data as any)[name].correct == false){continue}
+
       cards.push(
       <ErrorViewer
         num={i}
-        paragraph={(data as any)[name][0]==undefined? [["Выявлено отсутсвие данного модуля"]]:(data as any)[name]}
+        paragraph={(data as any)[name].texts}
         errText={name}
-        correct={(data as any)[name][0]==undefined? false:true}
+        correct={(data as any)[name].correct}
       ></ErrorViewer>
       )
       i++
@@ -93,6 +96,34 @@ const Home: NextPage = () => {
                 <Checkbox checked={correct} onChange={()=>setCorrect(!correct)}>Без замечаний </Checkbox>
               </div>
               {data == ""? <PulseLoader color={"#13377D"}></PulseLoader>:cards}
+          </div>
+          <div className={styles.progress}>
+            <CircularProgressbar 
+            styles={{
+              root: {},
+              path: {
+                stroke: `#13377D`,
+                strokeLinecap: 'butt',
+                transition: 'stroke-dashoffset 0.5s ease 0s',
+                transform: 'rotate(1turn)',
+                transformOrigin: 'center center',
+              },
+              trail: {
+                stroke: '#fff',
+                strokeLinecap: 'round',
+                transformOrigin: 'center center',
+              },
+              text: {
+                fill: '#13377D',
+                fontWeight:'600',
+                fontSize: '20px',
+              },
+              background: {
+                fill: '#3e98c7',
+              },
+            }}
+            value={(correctClasses/39)*100} text={`${((correctClasses/39)*100).toFixed(0)}%`}></CircularProgressbar>
+            <div>Вероятность соответствия документа</div>
           </div>
       </main>
     </div>

@@ -12,20 +12,22 @@ export const Header:React.FC = () =>{
                 <img src="/images/logo.svg"></img>
             </div>
             <div className={styles.itemWrapper}>
-                <div className={styles.item} onClick={()=>router.push("about")}>
-                    Про нас
-                </div>
-                <div className={styles.item} onClick={()=>router.push("how-to-use")}>
-                    Как пользоваться
-                </div>
                 <div className={styles.item} onClick={()=>router.push("/")}>
-                    Главная
+                    Проверить документы 
                 </div>
-                <div className={styles.item} onClick={()=>router.push("history")}>
+                <div className={styles.item} onClick={()=>router.push("/how-to-use")}>
+                    Инструкция
+                </div>
+                <div className={styles.item} onClick={()=>router.push("/history")}>
                     История файлов
                 </div>
+                <div className={styles.item} onClick={()=>router.push("/about")}>
+                    О нас
+                </div>
+                <div className={styles.item} onClick={()=>router.push("/download")}>
+                    Скачать <img src="/images/downloadSmall.svg"></img>
+                </div>
             </div>
-           
         </div>
     );
 }

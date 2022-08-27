@@ -15,6 +15,26 @@ a {
   box-sizing: border-box;
 }
 
+*::-webkit-scrollbar-track
+{
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+*::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #F5F5F5;
+}
+
+*::-webkit-scrollbar-thumb
+{
+  padding: 5px;
+	border-radius: 10px;
+	background-color: #13377D;
+}
+
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: white;
