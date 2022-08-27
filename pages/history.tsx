@@ -20,12 +20,13 @@ const History: NextPage = () => {
     const [data, setData] = useState("")
     let router = useRouter()
     if (data == ""){
-        axios.get(host+"/api/docx").then(res => {
+        axios.get(host+"/api/site/docx/").then(res => {
             setData(res.data)
         })
     }
     if (data != ""){
         (data as any).forEach((value:any) => {
+            localStorage.setItem(value.uuid, value.file)
             files.push(
                 <div className={styles.fileCard} onClick={()=>router.push("/view/" + value.uuid)}>
                     {value.file.slice(48, value.file.lenght)}

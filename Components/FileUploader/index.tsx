@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import  {  Button, message, Upload  } from "antd"
 import Icon, { UploadOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
+import { host } from "../../pages/api/consts";
 
 
 interface FileUploaderIE{
@@ -12,7 +13,7 @@ export const FileUploader:React.FC<FileUploaderIE> = (data) =>{
 
     const props = {
         name: 'file',
-        action: 'http://192.168.9.152:8000/api/docx/',
+        action: host + '/api/site/docx/',
         headers: {
           authorization: 'authorization-text',
         },

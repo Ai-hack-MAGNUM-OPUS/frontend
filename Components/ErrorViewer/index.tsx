@@ -6,15 +6,15 @@ import 'antd/dist/antd.css';
 
 interface ErrorViewerIE{
     errText:string;
-    paragraph: string[];
+    paragraph: [number, string][];
     variants?: string[];
     num: number;
-    correct:boolean
+    correct:boolean;
 }
 
 export const ErrorViewer : React.FC<ErrorViewerIE> = (props) =>{
     const [open, setOpen] = useState(false)
-    
+    console.log(props.paragraph)
 
     return(
         <div className={styles.viewer}>
@@ -41,8 +41,9 @@ export const ErrorViewer : React.FC<ErrorViewerIE> = (props) =>{
                     {
                         props.paragraph.map(
                             (value, index)=><div className={styles.paragraph}>
-                                    <div>№{index+1}</div>
-                                    <div className={styles.paragraph}>{value}</div>
+                                    <div><strong>№{index+1}</strong></div>
+                                    <div className={styles.paragraph}>{value[0]}</div>
+                                    <div><strong>Score:{value[1]}</strong></div>
                                 </div>
                         )
                     }
