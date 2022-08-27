@@ -48,3 +48,25 @@
     justify-content: center;
     align-items: center;
 }
+
+.history{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap:50px;
+    padding: 120px;
+}
+
+.fileCard{
+    background: #F4F7FD;
+    box-shadow: inset 0px -1px 0px #F0F0F0;
+    width: 240px;
+    height: 120PX;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #13377D;
+    cursor: pointer;
+}

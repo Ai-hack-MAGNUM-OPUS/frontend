@@ -14,10 +14,9 @@ import { useRouter } from 'next/router'
 const Upload: NextPage = () => {
   const [files, setFiles] = useState(new Array())
   let router = useRouter()
-  
+
   const onNext = () =>{
     localStorage.setItem("files", JSON.stringify(files))
-    
     router.push("/")
   }
   
