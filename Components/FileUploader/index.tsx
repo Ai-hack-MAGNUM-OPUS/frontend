@@ -20,7 +20,6 @@ export const FileUploader:React.FC<FileUploaderIE> = (data) =>{
       
         onChange(info:any) {
           if (info.file.status !== 'uploading') {
-            console.log(info.file, info.fileList);
           }
       
           if (info.file.status === 'done') {

@@ -16,6 +16,7 @@
 
 .logo{
     cursor: pointer;
+    user-select: none;
 }
 .itemWrapper{
     display: flex;

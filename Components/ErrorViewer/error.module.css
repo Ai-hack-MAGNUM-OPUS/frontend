@@ -56,7 +56,6 @@
     font-size: 14px;
     line-height: 22px;
     color: rgba(0, 0, 0, 0.45);
-
 }
 
 .paragraphs{
@@ -74,4 +73,16 @@
 
 .correct{
     width: 110px;
+}
+
+.circle{
+    border-radius: 50%;
+    height: 16px;
+    width: 16px;
+}
+
+.num{
+    display: flex;
+    gap:5px;
+    align-items: center;
 }

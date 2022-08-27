@@ -11,27 +11,33 @@ import { get } from './api/fetch'
 import { host } from './api/consts'
 import { PulseLoader } from 'react-spinners'
 import axios from 'axios'
+import { Checkbox } from 'antd'
 
 
 
 const Home: NextPage = () => {
-  
+  const [correct, setCorrect] = useState(true)
+  const [err, setErr] = useState(true)
+  const [sort, setSort] = useState("alphabet")
+
+
+
   let files = JSON.parse(localStorage.getItem("files") as string)
-  const [file, setFile] = useState(files[0].uuid)
+  const [file, setFile] = useState(files[0])
   const [data,setData]  = useState("")
   let i = 1;
   let cards = new Array<JSX.Element>()
 
   const getData = () =>{
     if (data == ""){
-      axios.get(host+"/api/site/docx/" + file).then(res => {
+      axios.get(host+"/api/site/docx/" + file.uuid).then(res => {
         setData(res.data)
       })
     }
   }
   const onFileChange = (newFile:any) =>{
     setData("")
-    axios.get(host+"/api/site/docx/" + newFile).then(res => {
+    axios.get(host+"/api/site/docx/" + newFile.uuid).then(res => {
       setData(res.data)
     })
       setFile(newFile)
@@ -40,6 +46,8 @@ const Home: NextPage = () => {
   setTimeout(getData, 2000);
   if (data != ""){
     for(var name in data as any) { 
+      if (correct == false && (data as any)[name][0]!=undefined){continue}
+      if (err == false && (data as any)[name][0]==undefined){continue}
       cards.push(
       <ErrorViewer
         num={i}
@@ -49,7 +57,7 @@ const Home: NextPage = () => {
       ></ErrorViewer>
       )
       i++
-  } 
+    }
   }
 
   let select = new Array<SelectItemIE>()
@@ -57,7 +65,7 @@ const Home: NextPage = () => {
       select.push(
         {
           name: value.file.slice(48, value.uuid.lenght),
-          value: value.uuid
+          value: value
         } as SelectItemIE
       )
   });
@@ -79,6 +87,11 @@ const Home: NextPage = () => {
             ></ItemSelect>
           </div>
           <div className={styles.pagination}>
+              <div className={styles.tools}>
+                <div><a href={file.file}>Скачать файл</a></div>
+                <Checkbox checked={err} onChange={()=>setErr(!err)}>Есть замечания</Checkbox>
+                <Checkbox checked={correct} onChange={()=>setCorrect(!correct)}>Без замечаний </Checkbox>
+              </div>
               {data == ""? <PulseLoader color={"#13377D"}></PulseLoader>:cards}
           </div>
       </main>

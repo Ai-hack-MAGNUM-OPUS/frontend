@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./itemSelect.module.css"
 
 export interface SelectItemIE{
@@ -13,46 +13,30 @@ interface SelectIE{
 }
 
 export const ItemSelect: React.FC<SelectIE> = (props) =>{
+    const [selected, setSelected] = useState(props.items[0])
+    const [open, setOpen] = useState(false)
     let options = new Array()
     
     props.items.map((item:SelectItemIE)=>{
         options.push(
-            <option>{item.name}</option> 
+            <div className={selected.name == item.name? styles.selected:styles.option} onClick={()=>onItemChange(item)}>{item.name}</div>
             )
     })
-    
-    const getValue = (name:string) =>{
-        let val;
-        props.items.map((item:SelectItemIE) => {
-            if (item.name == name){
-                val =  item.value
-            }
-        })
-        return val
+    const onItemChange = (item:SelectItemIE) =>{
+        setSelected(item)
+        props.onChange(item.value)
     }
-    const getName = (value:number) =>{
-        let name;
-        props.items.map((item:SelectItemIE) => {
-            if (item.value == value){
-                name =  item.name
-            }
-        })
-        return name
-    }
-    
     
     return(
-        <div>
-            {
-                props.value == undefined?
-                    <select className={styles.myselect} onChange={(e)=>props.onChange(getValue(e.target.value) as any)}>    
+        <div >
+            <div className={styles.myselect}>
+                <div className={styles.head} onClick={()=>setOpen(!open)}>Выберите документ <img style={{transform: open? "rotate(180deg)":""}} src="/images/arrow.svg"></img></div>
+                {
+                    open? <div className={styles.options}>
                         {options}
-                    </select>
-                :
-                    <select value={getName(props.value)} className={styles.myselect} onChange={(e)=>props.onChange(getValue(e.target.value) as any)}>    
-                        {options}
-                    </select>
-            }
+                    </div>: ""
+                }
+            </div>
         </div>
     )
 }
