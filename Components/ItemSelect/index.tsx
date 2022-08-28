@@ -19,7 +19,7 @@ export const ItemSelect: React.FC<SelectIE> = (props) =>{
     
     props.items.map((item:SelectItemIE)=>{
         options.push(
-            <div className={selected.name == item.name? styles.selected:styles.option} onClick={()=>onItemChange(item)}>{item.name}</div>
+            <div className={selected.name == item.name? styles.selected:styles.option} onClick={()=>onItemChange(item)}>{item.name.slice(60, item.name.length)}</div>
             )
     })
     const onItemChange = (item:SelectItemIE) =>{

@@ -90,7 +90,7 @@ const getData = () =>{
             files.length == 0? "" : <ItemSelect 
             onChange={(val)=>onFileChange(val as any)}
             items={files.map((value:any)=> ({
-              name: value.file.slice(60, value.uuid.lenght),
+              name: value.file,
               value: value
             } as SelectItemIE)
             )}
