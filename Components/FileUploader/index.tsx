@@ -8,7 +8,6 @@ import { host } from "../../pages/api/consts";
 interface FileUploaderIE{
     onResponse: (response:any)=>void
 }
-
 export const FileUploader:React.FC<FileUploaderIE> = (data) =>{
 
     const props = {
@@ -32,8 +31,8 @@ export const FileUploader:React.FC<FileUploaderIE> = (data) =>{
       };
       
     return (
-            <Upload {...props}>
-              <Button icon={<UploadOutlined></UploadOutlined>}>Click to Upload</Button>
+            <Upload {...props} multiple>
+              <Button icon={<UploadOutlined></UploadOutlined>}>Загрузите файлы для проверки</Button>
             </Upload>
       );
 }

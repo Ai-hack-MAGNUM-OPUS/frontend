@@ -188,3 +188,36 @@
     color: #F4F7FD;
     padding: 12px 26px;
 }
+
+.profileCard{
+    width: 15%;
+}
+.profileWrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:25px
+}
+
+.mText{
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 200%;
+    color: #000000;
+    text-align: center;
+}
+.sourceLink{
+    text-align: center;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 200%;
+    /* identical to box height, or 48px */
+
+    text-align: center;
+    text-decoration-line: underline;
+
+    /* main/black */
+    color: #000000;
+}

@@ -23,20 +23,20 @@ const About: NextPage = () => {
       </Head>
       <main className={styles.main}>
         <Header></Header>
-        <div className={styles.uploader}>
-            <div className={styles.h1}>Наша команда</div>
-            <div>
-                <img src="/images/member1.png"></img>
-                <img src="/images/member2.png"></img>
-                <img src="/images/member3.png"></img>
-                <img src="/images/member4.png"></img>
-                <img src="/images/member5.png"></img>
+        <div className={styles.upload} style={{paddingTop:"100px", paddingBottom:"100px"}}>
+            <div className={styles.h1} >Наша команда</div>
+            <div className={styles.profileWrapper}>
+                <img className={styles.profileCard} src="/images/member1.png"></img>
+                <img className={styles.profileCard} src="/images/member2.png"></img>
+                <img className={styles.profileCard} src="/images/member3.png"></img>
+                <img className={styles.profileCard} src="/images/member4.png"></img>
+                <img className={styles.profileCard} src="/images/member5.png"></img>
             </div>
             <div>
-                <div>Cсылка на репозиторий GitHub:</div>
-                <div>https://github.com/orgs/Ai-hack-MAGNUM-OPUS/repositories</div>
-                <div>Cсылка на презентацию:</div>
-                <div>https://github.com/orgs/Ai-hack-MAGNUM-OPUS/repositories</div>
+                <div className={styles.mText}>Cсылка на репозиторий GitHub:</div>
+                <div className={styles.sourceLink}>https://github.com/orgs/Ai-hack-MAGNUM-OPUS/repositories</div>
+                <div className={styles.mText}>Cсылка на презентацию:</div>
+                <div className={styles.sourceLink}>https://github.com/orgs/Ai-hack-MAGNUM-OPUS/repositories</div>
             </div>
         </div>
       </main>

@@ -36,6 +36,7 @@ export const ErrorViewer : React.FC<ErrorViewerIE> = (props) =>{
         {   open?
             <div className={styles.fixes}>
                 <div className={styles.paragraphs}>
+                    <div style={{display: props.correct? "none":""}}>ПРИМЕРЫ ИЗ ДРУГИХ НПА</div>
                     {
                         props.paragraph.map(
                             (value, index)=><div className={styles.paragraph}>

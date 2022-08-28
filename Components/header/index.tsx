@@ -15,7 +15,7 @@ export const Header:React.FC = () =>{
                 <div className={styles.item} onClick={()=>router.push("/")}>
                     Проверить документы 
                 </div>
-                <div className={styles.item} onClick={()=>router.push("/how-to-use")}>
+                <div className={styles.item} onClick={()=>router.push("/guide")}>
                     Инструкция
                 </div>
                 <div className={styles.item} onClick={()=>router.push("/history")}>
