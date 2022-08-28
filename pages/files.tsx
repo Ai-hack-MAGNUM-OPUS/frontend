@@ -25,26 +25,23 @@ const Home: NextPage = () => {
   let i = 1;
   let cards = new Array<JSX.Element>()
   let correctClasses = 0
-  let select = new Array<SelectItemIE>()
 
 const getData = () =>{
     let localFiles = JSON.parse(localStorage == undefined? "":localStorage.getItem("files") as string)
     setFiles(localFiles)
     setFile(localFiles[0])
     if (data == ""){
-      axios.get(host+"/api/site/docx/" + (localFiles[0] as any).uuid).then(res => {
-        setData(res.data)
+      axios.get(host+"/api/site/state/" + (localFiles[0] as any).uuid).then(res => {
+        if (res.data.paragraphs_processed > 0){
+            setTimeout(getData, 1000);
+        }
+        else{
+          axios.get(host+"/api/site/docx/" + (localFiles[0] as any).uuid).then(res => {
+            setData(res.data)
+          })
+        }
       })
     }
-    
-  files.forEach((value : any) => {
-    select.push(
-      {
-        name: value.file.slice(48, value.uuid.lenght),
-        value: value
-      } as SelectItemIE
-    )
-});
   }
   const onFileChange = (newFile:any) =>{
     setData("")
@@ -53,8 +50,9 @@ const getData = () =>{
     })
       setFile(newFile)
   }
-
-  setTimeout(getData, 2000);
+  if (data == ""){
+    setTimeout(getData, 2000);
+  }
   if (data != ""){
     for(var name in data as any) { 
       if ((data as any)[name].correct){correctClasses++}
@@ -88,11 +86,17 @@ const getData = () =>{
       <main className={styles.main}>
         <Header></Header>
         
-          <div className={styles.selector}>
-            <ItemSelect 
-              onChange={(val)=>onFileChange(val as any)}
-              items={select}
-            ></ItemSelect>
+          <div className={styles.selector}>{
+            files.length == 0? "" : <ItemSelect 
+            onChange={(val)=>onFileChange(val as any)}
+            items={files.map((value:any)=> ({
+              name: value.file.slice(60, value.uuid.lenght),
+              value: value
+            } as SelectItemIE)
+            )}
+          ></ItemSelect>
+          }
+            
           </div>
           <div className={styles.pagination}>
               <div className={styles.tools}>

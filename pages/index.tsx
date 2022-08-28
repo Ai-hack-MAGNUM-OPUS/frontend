@@ -17,7 +17,13 @@ const Upload: NextPage = () => {
 
   const onNext = () =>{
     localStorage.setItem("files", JSON.stringify(files))
-    router.push("/files")
+    if (files.length > 0){
+      router.push("/files")
+    }
+    else{
+      alert("Загрузите файлы, потом все заработает")
+    }
+    
   }
   
   return (

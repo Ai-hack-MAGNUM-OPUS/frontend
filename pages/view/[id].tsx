@@ -24,6 +24,7 @@ const View: NextPage = () => {
   const [text, setText] = useState("")
   const getData = () =>{
     if (data == ""){
+      
       axios.get(host+"/api/site/docx/" + uuid).then(res => {
         setData(res.data)
       })

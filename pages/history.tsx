@@ -29,7 +29,7 @@ const History: NextPage = () => {
             localStorage.setItem(value.uuid, value.file)
             files.push(
                 <div className={styles.fileCard} onClick={()=>router.push("/view/" + value.uuid)}>
-                    {value.file.slice(48, value.file.lenght)}
+                    {value.file.slice(60, 88)}
                 </div>
             )
         });
