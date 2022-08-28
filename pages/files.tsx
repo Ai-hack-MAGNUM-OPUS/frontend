@@ -19,22 +19,32 @@ import 'react-circular-progressbar/dist/styles.css';
 const Home: NextPage = () => {
   const [correct, setCorrect] = useState(true)
   const [err, setErr] = useState(true)
-  const [sort, setSort] = useState("alphabet")
-
-
-
-  let files = JSON.parse(localStorage.getItem("files") as string)
-  const [file, setFile] = useState(files[0])
+  const [files, setFiles] = useState([])
+  const [file, setFile] = useState({})
   const [data,setData]  = useState("")
   let i = 1;
   let cards = new Array<JSX.Element>()
   let correctClasses = 0
-  const getData = () =>{
+  let select = new Array<SelectItemIE>()
+
+const getData = () =>{
+    let localFiles = JSON.parse(localStorage == undefined? "":localStorage.getItem("files") as string)
+    setFiles(localFiles)
+    setFile(localFiles[0])
     if (data == ""){
-      axios.get(host+"/api/site/docx/" + file.uuid).then(res => {
+      axios.get(host+"/api/site/docx/" + (localFiles[0] as any).uuid).then(res => {
         setData(res.data)
       })
     }
+    
+  files.forEach((value : any) => {
+    select.push(
+      {
+        name: value.file.slice(48, value.uuid.lenght),
+        value: value
+      } as SelectItemIE
+    )
+});
   }
   const onFileChange = (newFile:any) =>{
     setData("")
@@ -60,18 +70,13 @@ const Home: NextPage = () => {
       ></ErrorViewer>
       )
       i++
+
+
     }
+
+    
   }
 
-  let select = new Array<SelectItemIE>()
-  files.forEach((value : any) => {
-      select.push(
-        {
-          name: value.file.slice(48, value.uuid.lenght),
-          value: value
-        } as SelectItemIE
-      )
-  });
 
   return (
     <div className={styles.container}>
@@ -91,7 +96,7 @@ const Home: NextPage = () => {
           </div>
           <div className={styles.pagination}>
               <div className={styles.tools}>
-                <div><a href={file.file}>Скачать файл</a></div>
+                <div><a href={(file as any).file}>Скачать файл</a></div>
                 <Checkbox checked={err} onChange={()=>setErr(!err)}>Есть замечания</Checkbox>
                 <Checkbox checked={correct} onChange={()=>setCorrect(!correct)}>Без замечаний </Checkbox>
               </div>

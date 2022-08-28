@@ -40,6 +40,11 @@ const Upload: NextPage = () => {
                     <img src="/images/myoficce.svg"></img>
                     <img src="/images/libreoficce.svg"></img>
                 </div>
+                <div className={styles.programsM}>
+                    <img src="/images/wordm.svg"></img>
+                    <img src="/images/myoficcem.svg"></img>
+                    <img src="/images/libreoficcem.svg"></img>
+                </div>
             </div>
         </div>
         <img className={styles.downloadStars} src="/images/stars.svg"></img>

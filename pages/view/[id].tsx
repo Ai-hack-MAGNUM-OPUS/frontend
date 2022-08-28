@@ -15,19 +15,20 @@ import { useRouter } from 'next/router'
 
 
 const View: NextPage = () => {
-    let router = useRouter()
-    let uuid = router.query.id as string
+  let router = useRouter()
+  let uuid = router.query.id as string
 
   const [data,setData]  = useState("")
   let i = 1;
   let cards = new Array<JSX.Element>()
-
+  const [text, setText] = useState("")
   const getData = () =>{
     if (data == ""){
       axios.get(host+"/api/site/docx/" + uuid).then(res => {
         setData(res.data)
       })
     }
+    setText(localStorage.getItem(uuid)?.slice(48,localStorage.getItem(uuid)?.length) as string)
   }
   setTimeout(getData, 2000);
   if (data != ""){
@@ -61,7 +62,7 @@ const View: NextPage = () => {
                   <img  style={{ cursor:"pointer"}}src="/images/ArrowLeft.svg"></img>
                 </div>
                 <div className={styles.viewerText}>
-                  {localStorage.getItem(uuid)?.slice(48,localStorage.getItem(uuid)?.length)}
+                  {text}
                 </div>
               </div>
               {data == ""? <PulseLoader color={"#13377D"}></PulseLoader>:cards}

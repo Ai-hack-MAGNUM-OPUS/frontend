@@ -1,1 +1,1 @@
-export const host = "http://192.168.9.207:8000"
+export const host = "https://5bf1-89-223-81-202.eu.ngrok.io"

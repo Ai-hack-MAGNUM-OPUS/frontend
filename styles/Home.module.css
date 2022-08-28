@@ -221,11 +221,17 @@
     /* main/black */
     color: #000000;
 }
-
+.programsM{
+    display: none;
+}
 @media screen and (max-width: 1000px) {
     .h1{
         font-size: 24px;
     }
+    .downloadText{
+        font-size: 14px !important;
+    }
+
     .main{
         padding:0px 25px;
         padding-top: 150px;
@@ -246,7 +252,14 @@
         display: none;
     }
     .programs{
+        display: none;
+    }
+    .programsM{
         flex-wrap: wrap;
+        display: flex;
+        gap:25px;
+        height: 24px;
+        align-items: center;
     }
     .profileWrapper{
         flex-wrap: wrap;
