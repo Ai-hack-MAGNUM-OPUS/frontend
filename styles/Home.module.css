@@ -221,3 +221,38 @@
     /* main/black */
     color: #000000;
 }
+
+@media screen and (max-width: 1000px) {
+    .h1{
+        font-size: 24px;
+    }
+    .main{
+        padding:0px 25px;
+        padding-top: 150px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .pagination{
+        gap:50px;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    .progress{
+        width: 100%;
+    }
+    .downloadStars{
+        display: none;
+    }
+    .programs{
+        flex-wrap: wrap;
+    }
+    .profileWrapper{
+        flex-wrap: wrap;
+    }
+    .profileCard{
+        min-width: 120px;
+    }
+
+}

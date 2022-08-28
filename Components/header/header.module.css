@@ -48,3 +48,26 @@
     background: #13377D;
     transition: 0.3s;
 }
+.burger{
+    display: none;
+}
+@media screen and (max-width: 1500px) {
+    .logo{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .header{
+        flex-direction: column;
+    }
+    .itemWrapper{
+        flex-wrap: wrap;
+    }
+    .burger{
+        display: block;
+        height: 60px;
+    }
+
+}
+  
